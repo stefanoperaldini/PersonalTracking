@@ -1,0 +1,15 @@
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\PersonalTracking.exe.config
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\PersonalTracking.exe
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\PersonalTracking.pdb
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\BLL.dll
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\DAL.dll
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\BLL.pdb
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\DAL.pdb
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.csprojAssemblyReference.cache
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.FrmLogin.resources
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.Properties.Resources.resources
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.csproj.GenerateResource.cache
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.csproj.CoreCompileInputs.cache
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.csproj.CopyComplete
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.exe
+C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.pdb
