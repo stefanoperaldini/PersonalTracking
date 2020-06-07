@@ -7,3 +7,4 @@ C:\Users\stefa\source\repos\PersonalTracking\BLL\obj\Debug\BLL.csproj.CoreCompil
 C:\Users\stefa\source\repos\PersonalTracking\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\stefa\source\repos\PersonalTracking\BLL\obj\Debug\BLL.dll
 C:\Users\stefa\source\repos\PersonalTracking\BLL\obj\Debug\BLL.pdb
+C:\Users\stefa\source\repos\PersonalTracking\BLL\bin\Debug\DAL.dll.config

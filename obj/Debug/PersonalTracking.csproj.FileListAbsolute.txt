@@ -26,3 +26,4 @@ C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.FrmPermi
 C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.FrmSalary.resources
 C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.FrmSalaryList.resources
 C:\Users\stefa\source\repos\PersonalTracking\obj\Debug\PersonalTracking.FrmTask.resources
+C:\Users\stefa\source\repos\PersonalTracking\bin\Debug\DAL.dll.config
