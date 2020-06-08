@@ -37,7 +37,7 @@
             this.lblDepartment = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.lblSurname = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtUserNo = new System.Windows.Forms.TextBox();
             this.lblUserNo = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.panel1.Controls.Add(this.lblDepartment);
             this.panel1.Controls.Add(this.txtSurname);
             this.panel1.Controls.Add(this.lblSurname);
-            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.lblName);
             this.panel1.Controls.Add(this.txtUserNo);
             this.panel1.Controls.Add(this.lblUserNo);
@@ -81,6 +81,7 @@
             this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
@@ -91,6 +92,7 @@
             this.btnSearch.TabIndex = 5;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // cmbPosition
             // 
@@ -119,6 +121,7 @@
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(149, 28);
             this.cmbDepartment.TabIndex = 3;
+            this.cmbDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbDepartment_SelectedIndexChanged);
             // 
             // lblDepartment
             // 
@@ -148,13 +151,13 @@
             this.lblSurname.TabIndex = 0;
             this.lblSurname.Text = "Surname";
             // 
-            // txtPassword
+            // txtName
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(130, 47);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(129, 26);
-            this.txtPassword.TabIndex = 1;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(130, 47);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(129, 26);
+            this.txtName.TabIndex = 1;
             // 
             // lblName
             // 
@@ -187,6 +190,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 162);
@@ -260,6 +264,7 @@
             this.Name = "FrmEmployeeList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee List";
+            this.Load += new System.EventHandler(this.FrmEmployeeList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -277,7 +282,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtUserNo;
         private System.Windows.Forms.Label lblUserNo;
