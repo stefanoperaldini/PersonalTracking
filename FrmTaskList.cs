@@ -16,6 +16,7 @@ namespace PersonalTracking
     public partial class FrmTaskList : Form
     {
         TaskDTO dto = new TaskDTO();
+        bool comboFull = false;
 
         public FrmTaskList()
         {
@@ -32,10 +33,30 @@ namespace PersonalTracking
             e.Handled = !General.isNumber(e);
         }
 
-        private void FrmTaskList_Load(object sender, EventArgs e)
+        void fillAllData()
         {
             dto = TaskBLL.GetAll();
             dataGridView1.DataSource = dto.Tasks;
+            comboFull = false;
+            cmbDepartment.DataSource = dto.Departments;
+            cmbDepartment.DisplayMember = "DepartmentName";
+            cmbDepartment.ValueMember = "ID";
+            cmbDepartment.SelectedIndex = -1;
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.DisplayMember = "PositionName";
+            cmbPosition.ValueMember = "ID";
+            cmbPosition.SelectedIndex = -1;
+            comboFull = true;
+            cmbTaskState.DataSource = dto.TaskStates;
+            cmbTaskState.DisplayMember = "StateName";
+            cmbTaskState.ValueMember = "ID";
+            cmbTaskState.SelectedIndex = -1;
+
+        }
+
+        private void FrmTaskList_Load(object sender, EventArgs e)
+        {
+            fillAllData();
             dataGridView1.Columns[0].HeaderText = "Task Title";
             dataGridView1.Columns[1].HeaderText = "User NO";
             dataGridView1.Columns[2].HeaderText = "Name";
@@ -52,7 +73,6 @@ namespace PersonalTracking
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
             dataGridView1.Columns[15].Visible = false;
-
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -61,6 +81,8 @@ namespace PersonalTracking
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
+            fillAllData();
+            CleanFilters();
 
         }
 
@@ -70,6 +92,60 @@ namespace PersonalTracking
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
+        }
+
+        private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboFull)
+            {
+                cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID == Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            }
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<TaskDetailDTO> list = dto.Tasks;
+            if (txtUserNo.Text.Trim() != "")
+                list = list.Where(x => x.UserNo == Convert.ToInt32(txtUserNo.Text)).ToList();
+            if (txtName.Text.Trim() != "")
+                list = list.Where(x => x.Name.Contains(txtName.Text)).ToList();
+            if (txtSurname.Text.Trim() != "")
+                list = list.Where(x => x.Name.Contains(txtSurname.Text)).ToList();
+            if (cmbDepartment.SelectedIndex != -1)
+                list = list.Where(x => x.DepartmentID == Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
+            if (cmbPosition.SelectedIndex != -1)
+                list = list.Where(x => x.PositionID == Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
+            if (rbStartDate.Checked)
+                list = list.Where(x => (x.TaskStartDate > Convert.ToDateTime(dpStart.Value)) && (x.TaskStartDate < Convert.ToDateTime(dpFinish.Value))).ToList();
+            if (rbDeliveryDate.Checked)
+                list = list.Where(x => (x.TaskDeliveryDate > Convert.ToDateTime(dpStart.Value)) && (x.TaskDeliveryDate < Convert.ToDateTime(dpFinish.Value))).ToList();
+            if (cmbTaskState.SelectedIndex != -1)
+                list = list.Where(x => x.taskStateID == Convert.ToInt32(cmbTaskState.SelectedValue)).ToList();
+            dataGridView1.DataSource = list;
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            CleanFilters();
+        }
+
+        private void CleanFilters()
+        {
+            txtUserNo.Clear();
+            txtName.Clear();
+            txtSurname.Clear();
+            comboFull = false;
+            cmbDepartment.DataSource = dto.Departments;
+            cmbDepartment.SelectedIndex = -1;
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.SelectedIndex = -1;
+            comboFull = true;
+            rbStartDate.Checked = false;
+            rbDeliveryDate.Checked = false;
+            cmbTaskState.SelectedIndex = -1;
+            dataGridView1.DataSource = dto.Tasks;
         }
     }
 }
