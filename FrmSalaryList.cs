@@ -17,6 +17,7 @@ namespace PersonalTracking
     {
         SalaryDTO dto = new SalaryDTO();
         private bool comboFull = false;
+        public SalaryDetailDTO detail = new SalaryDetailDTO();
 
         public FrmSalaryList()
         {
@@ -41,7 +42,6 @@ namespace PersonalTracking
             this.Visible = true;
             fillAllData();
             CleanFilters();
-
         }
 
         private void fillAllData()
@@ -68,10 +68,19 @@ namespace PersonalTracking
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmSalary frm = new FrmSalary();
-            this.Hide();
-            frm.ShowDialog();
-            this.Visible = true;
+            if (detail.SalaryID == 0)
+                MessageBox.Show("Please select a salary from table");
+            else
+            {
+                FrmSalary frm = new FrmSalary();
+                frm.isUpdate = true;
+                frm.detail = detail;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+                fillAllData();
+                CleanFilters();
+            }
         }
 
         private void FrmSalaryList_Load(object sender, EventArgs e)
@@ -85,12 +94,14 @@ namespace PersonalTracking
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[6].Visible = false;
             dataGridView1.Columns[7].Visible = false;
-            dataGridView1.Columns[8].HeaderText = "Month";
-            dataGridView1.Columns[9].HeaderText = "Year";
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[9].HeaderText = "Month";
+            dataGridView1.Columns[10].HeaderText = "Year";
             dataGridView1.Columns[10].Visible = false;
-            dataGridView1.Columns[11].HeaderText = "Salary";
-            dataGridView1.Columns[12].Visible = false;
+            dataGridView1.Columns[11].Visible = false;
+            dataGridView1.Columns[12].HeaderText = "Salary";
             dataGridView1.Columns[13].Visible = false;
+            dataGridView1.Columns[14].Visible = false;
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,6 +166,20 @@ namespace PersonalTracking
             txtYear.Clear();
             txtSalary.Clear();
             dataGridView1.DataSource = dto.Salaries;
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detail.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            detail.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            detail.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            detail.SalaryID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+            detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            detail.SalaryYear = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
+            detail.MonthID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
+            detail.SalaryAmount = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
+            detail.OldSalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
+
         }
     }
 }

@@ -26,5 +26,10 @@ namespace BLL
         {
             TaskDAO.addTask(task); 
         }
+
+        public static void UpdateTask(TASK task)
+        {
+            TaskDAO.UpdateTask(task);
+        }
     }
 }
