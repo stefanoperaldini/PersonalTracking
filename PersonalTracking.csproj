@@ -133,6 +133,7 @@
     <Compile Include="FrmTaskList.Designer.cs">
       <DependentUpon>FrmTaskList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserStatic.cs" />
     <EmbeddedResource Include="FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>

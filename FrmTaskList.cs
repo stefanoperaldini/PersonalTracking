@@ -73,6 +73,7 @@ namespace PersonalTracking
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
             dataGridView1.Columns[15].Visible = false;
+            MessageBox.Show(UserStatic.EmployeeID.ToString() + " " + UserStatic.UserNO.ToString() + " " + UserStatic.isAdmin.ToString());
         }
 
         private void btnNew_Click(object sender, EventArgs e)

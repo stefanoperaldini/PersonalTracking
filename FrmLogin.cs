@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,9 +36,27 @@ namespace PersonalTracking
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FrmMain frm = new FrmMain();
-            this.Hide();
-            frm.ShowDialog();
+            if (txtUserNo.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+                MessageBox.Show("Please fill the userNo and password");
+            else
+            {
+
+                List<EMPLOYEE> listEmployee = EmployeeBLL.GetEmployees(Convert.ToInt32(txtUserNo.Text), txtPassword.Text);
+                if (listEmployee.Count == 0)
+                    MessageBox.Show("Please control you information");
+                else
+                {
+                    EMPLOYEE employee = new EMPLOYEE();
+                    employee = listEmployee.First();
+                    UserStatic.EmployeeID = employee.ID;
+                    UserStatic.UserNO = employee.UserNo;
+                    UserStatic.isAdmin = employee.isAdmin;
+                    FrmMain frm = new FrmMain();
+                    this.Hide();
+                    frm.ShowDialog();
+
+                }
+            }
         }
     }
 }

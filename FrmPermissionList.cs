@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DAL;
+using DAL.DTO;
 
 namespace PersonalTracking
 {
     public partial class FrmPermissionList : Form
     {
+        PermissionDTO dto = new PermissionDTO();
+
         public FrmPermissionList()
         {
             InitializeComponent();
@@ -56,6 +61,11 @@ namespace PersonalTracking
         private void txtUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !General.isNumber(e);
+        }
+
+        private void FrmPermissionList_Load(object sender, EventArgs e)
+        {
+            dto = PermissionBLL.GetAll();
         }
     }
 }
