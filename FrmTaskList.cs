@@ -124,7 +124,6 @@ namespace PersonalTracking
             if (cmbTaskState.SelectedIndex != -1)
                 list = list.Where(x => x.taskStateID == Convert.ToInt32(cmbTaskState.SelectedValue)).ToList();
             dataGridView1.DataSource = list;
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)

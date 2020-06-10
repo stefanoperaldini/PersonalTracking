@@ -32,7 +32,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDayAmount = new System.Windows.Forms.TextBox();
             this.lblDayAmount = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbEndDate = new System.Windows.Forms.RadioButton();
@@ -49,7 +49,7 @@
             this.lblDepartment = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.lblSurname = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtUserNo = new System.Windows.Forms.TextBox();
             this.lblUserNo = new System.Windows.Forms.Label();
@@ -61,6 +61,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.lblState = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,14 +78,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 208);
+            this.panel1.Size = new System.Drawing.Size(930, 208);
             this.panel1.TabIndex = 0;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.cmbState);
             this.panel3.Controls.Add(this.btnClear);
+            this.panel3.Controls.Add(this.lblState);
             this.panel3.Controls.Add(this.btnSearch);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.txtDayAmount);
             this.panel3.Controls.Add(this.lblDayAmount);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.dpFinish);
@@ -94,37 +98,39 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(312, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(488, 208);
+            this.panel3.Size = new System.Drawing.Size(618, 208);
             this.panel3.TabIndex = 1;
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(338, 162);
+            this.btnClear.Location = new System.Drawing.Point(467, 162);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(132, 38);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(194, 162);
+            this.btnSearch.Location = new System.Drawing.Point(323, 162);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(132, 38);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox1
+            // txtDayAmount
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(129, 123);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 26);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtDayAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDayAmount.Location = new System.Drawing.Point(129, 123);
+            this.txtDayAmount.Name = "txtDayAmount";
+            this.txtDayAmount.Size = new System.Drawing.Size(149, 26);
+            this.txtDayAmount.TabIndex = 2;
+            this.txtDayAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // lblDayAmount
             // 
@@ -223,7 +229,7 @@
             this.pnlForAdmin.Controls.Add(this.lblDepartment);
             this.pnlForAdmin.Controls.Add(this.txtSurname);
             this.pnlForAdmin.Controls.Add(this.lblSurname);
-            this.pnlForAdmin.Controls.Add(this.txtPassword);
+            this.pnlForAdmin.Controls.Add(this.txtName);
             this.pnlForAdmin.Controls.Add(this.lblName);
             this.pnlForAdmin.Controls.Add(this.txtUserNo);
             this.pnlForAdmin.Controls.Add(this.lblUserNo);
@@ -289,13 +295,13 @@
             this.lblSurname.TabIndex = 7;
             this.lblSurname.Text = "Surname";
             // 
-            // txtPassword
+            // txtName
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(130, 44);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(149, 26);
-            this.txtPassword.TabIndex = 1;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(130, 44);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(149, 26);
+            this.txtName.TabIndex = 1;
             // 
             // lblName
             // 
@@ -337,7 +343,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 412);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 100);
+            this.panel2.Size = new System.Drawing.Size(930, 100);
             this.panel2.TabIndex = 1;
             // 
             // btnDisapprove
@@ -407,18 +413,39 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 208);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(800, 204);
+            this.dataGridView1.Size = new System.Drawing.Size(930, 204);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // cmbState
+            // 
+            this.cmbState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(127, 169);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(149, 28);
+            this.cmbState.TabIndex = 11;
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.Location = new System.Drawing.Point(12, 171);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(53, 20);
+            this.lblState.TabIndex = 12;
+            this.lblState.Text = "State";
+            this.lblState.Click += new System.EventHandler(this.label1_Click);
             // 
             // FrmPermissionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 512);
+            this.ClientSize = new System.Drawing.Size(930, 512);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -458,11 +485,11 @@
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Label lblSurname;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtUserNo;
         private System.Windows.Forms.Label lblUserNo;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDayAmount;
         private System.Windows.Forms.Label lblDayAmount;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbEndDate;
@@ -474,5 +501,7 @@
         private System.Windows.Forms.Label lblPermissionDate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cmbState;
+        private System.Windows.Forms.Label lblState;
     }
 }
