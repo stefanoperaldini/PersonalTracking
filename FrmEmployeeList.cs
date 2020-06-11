@@ -15,6 +15,10 @@ namespace PersonalTracking
 {
     public partial class FrmEmployeeList : Form
     {
+        EmployeeDTO dto = new EmployeeDTO();
+        EmployeeDetailDTO detail = new EmployeeDetailDTO();
+        private bool comboFull = false;
+
         public FrmEmployeeList()
         {
             InitializeComponent();
@@ -36,20 +40,29 @@ namespace PersonalTracking
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
+            fillAllData();
+            CleanFilter();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmEmployee frm = new FrmEmployee();
-            this.Hide();
-            frm.ShowDialog();
-            this.Visible = true;
+            if (detail.EmployeeID == 0)
+                MessageBox.Show("Please select a employee from table");
+            else
+            {
+                FrmEmployee frm = new FrmEmployee();
+                frm.isUpdate = true;
+                frm.detail = detail;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+                fillAllData();
+                CleanFilter();
+            }
+
         }
 
-        EmployeeDTO dto = new EmployeeDTO();
-        private bool comboFull = false;
-
-        private void FrmEmployeeList_Load(object sender, EventArgs e)
+        void fillAllData()
         {
             dto = EmployeeBLL.GetAll();
             dataGridView1.DataSource = dto.Employees;
@@ -79,6 +92,12 @@ namespace PersonalTracking
             comboFull = true;
         }
 
+
+        private void FrmEmployeeList_Load(object sender, EventArgs e)
+        {
+            fillAllData();
+        }
+
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboFull)
@@ -105,6 +124,11 @@ namespace PersonalTracking
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            CleanFilter();
+        }
+
+        private void CleanFilter()
+        {
             txtUserNo.Clear();
             txtName.Clear();
             txtSurname.Clear();
@@ -115,8 +139,25 @@ namespace PersonalTracking
             cmbPosition.SelectedIndex = -1;
             comboFull = true;
             dataGridView1.DataSource = dto.Employees;
+        }
 
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
 
+            detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            detail.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            detail.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            detail.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            detail.Password = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            detail.DepartmentName = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+            detail.PositionName = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            detail.DepartmentID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[7].Value);
+            detail.PositionID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
+            detail.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
+            detail.isAdmin = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
+            detail.ImagePath = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            detail.Address = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
+            detail.BirthDay = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
         }
     }
 }

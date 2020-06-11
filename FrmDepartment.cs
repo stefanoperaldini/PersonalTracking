@@ -14,6 +14,9 @@ namespace PersonalTracking
 {
     public partial class FrmDepartment : Form
     {
+        public bool isUpdate = false;
+        public DEPARTMENT detail = new DEPARTMENT();
+        
         public FrmDepartment()
         {
             InitializeComponent();
@@ -33,16 +36,36 @@ namespace PersonalTracking
             else
             {
                 DEPARTMENT department = new DEPARTMENT();
-                department.DepartmentName = txtDepartment.Text;
-                BLL.DepartmentBLL.AddDepartment(department);
-                MessageBox.Show("Department was added");
-                txtDepartment.Clear();
+                if (!isUpdate)
+                {
+                    department.DepartmentName = txtDepartment.Text;
+                    BLL.DepartmentBLL.AddDepartment(department);
+                    MessageBox.Show("Department was added");
+                    txtDepartment.Clear();
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+                    if(result == DialogResult.Yes)
+                    {
+                        department.ID = detail.ID;
+                        department.DepartmentName = txtDepartment.Text;
+                        DepartmentBLL.UpdateDepartment(department);
+                        MessageBox.Show("Department was updated");
+                        this.Close();
+
+                    }
+
+                }
             }
         }
 
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
-
+            if (isUpdate)
+            {
+                txtDepartment.Text = detail.DepartmentName;
+            }
         }
     }
 }
