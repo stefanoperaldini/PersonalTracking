@@ -33,7 +33,7 @@ namespace PersonalTracking
             PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Approved);
             MessageBox.Show("Approved");
             fillAllData();
-            ClearFilters();
+            CleanFilters();
         }
 
         private void btnDisapprove_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace PersonalTracking
             PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Disapproved);
             MessageBox.Show("Disapproved");
             fillAllData();
-            ClearFilters();
+            CleanFilters();
 
         }
 
@@ -58,12 +58,25 @@ namespace PersonalTracking
                 frm.ShowDialog();
                 this.Visible = true;
                 fillAllData();
-                ClearFilters();
+                CleanFilters();
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (detail.State == PermissionStates.Approved || detail.State == PermissionStates.Disapproved)
+                    MessageBox.Show("You cannot delete approved or disapproved permissions");
+                else
+                {
+                    PermissionBLL.DeletePermission(detail.PermissionID);
+                    MessageBox.Show("Permission was deleted");
+                    fillAllData();
+                    CleanFilters();
+                }
+            }
 
         }
 
@@ -74,7 +87,7 @@ namespace PersonalTracking
             frm.ShowDialog();
             this.Visible = true;
             fillAllData();
-            ClearFilters();
+            CleanFilters();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,10 +176,10 @@ namespace PersonalTracking
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ClearFilters();
+            CleanFilters();
         }
 
-        private void ClearFilters()
+        private void CleanFilters()
         {
             txtUserNo.Clear();
             txtName.Clear();

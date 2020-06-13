@@ -54,11 +54,16 @@ namespace PersonalTracking
             }
         }
 
-        private void FrmDepartmentList_Load(object sender, EventArgs e)
+        private void fillGrid()
         {
-            
             listDepartments = DepartmentBLL.GetDepartments();
             dataGridView1.DataSource = listDepartments;
+        }
+
+        private void FrmDepartmentList_Load(object sender, EventArgs e)
+        {
+
+            fillGrid();
             dataGridView1.Columns[0].HeaderText = "Department ID";
             dataGridView1.Columns[1].HeaderText = "Department name";
         }
@@ -67,6 +72,17 @@ namespace PersonalTracking
         {
             detail.ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             detail.DepartmentName = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                DepartmentBLL.DeleteDepartment(detail.ID);
+                MessageBox.Show("Department was deleted");
+                fillGrid();
+            }
         }
     }
 }

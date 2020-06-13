@@ -41,7 +41,7 @@ namespace PersonalTracking
             frm.ShowDialog();
             this.Visible = true;
             fillAllData();
-            CleanFilter();
+            CleanFilters();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace PersonalTracking
                 frm.ShowDialog();
                 this.Visible = true;
                 fillAllData();
-                CleanFilter();
+                CleanFilters();
             }
 
         }
@@ -124,10 +124,10 @@ namespace PersonalTracking
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            CleanFilter();
+            CleanFilters();
         }
 
-        private void CleanFilter()
+        private void CleanFilters()
         {
             txtUserNo.Clear();
             txtName.Clear();
@@ -158,6 +158,18 @@ namespace PersonalTracking
             detail.ImagePath = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
             detail.Address = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
             detail.BirthDay = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                EmployeeBLL.DeleteEmployee(detail.EmployeeID);
+                MessageBox.Show("Employee was deleted");
+                fillAllData();
+                CleanFilters();
+            }
         }
     }
 }
