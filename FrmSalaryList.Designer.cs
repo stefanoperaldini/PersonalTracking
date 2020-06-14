@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnForAdmin = new System.Windows.Forms.Panel();
+            this.pnForUser = new System.Windows.Forms.Panel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,7 +42,7 @@
             this.lblYear = new System.Windows.Forms.Label();
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.lblSalary = new System.Windows.Forms.Label();
-            this.pnUser = new System.Windows.Forms.Panel();
+            this.pnForAdmin = new System.Windows.Forms.Panel();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.lblPosition = new System.Windows.Forms.Label();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
@@ -60,40 +60,40 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.pnForAdmin.SuspendLayout();
+            this.pnForUser.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.pnUser.SuspendLayout();
+            this.pnForAdmin.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pnForUser);
             this.panel1.Controls.Add(this.pnForAdmin);
-            this.panel1.Controls.Add(this.pnUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(934, 210);
             this.panel1.TabIndex = 0;
             // 
-            // pnForAdmin
+            // pnForUser
             // 
-            this.pnForAdmin.Controls.Add(this.btnClear);
-            this.pnForAdmin.Controls.Add(this.btnSearch);
-            this.pnForAdmin.Controls.Add(this.groupBox1);
-            this.pnForAdmin.Controls.Add(this.cmbMonth);
-            this.pnForAdmin.Controls.Add(this.lblMonth);
-            this.pnForAdmin.Controls.Add(this.txtYear);
-            this.pnForAdmin.Controls.Add(this.lblYear);
-            this.pnForAdmin.Controls.Add(this.txtSalary);
-            this.pnForAdmin.Controls.Add(this.lblSalary);
-            this.pnForAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnForAdmin.Location = new System.Drawing.Point(317, 0);
-            this.pnForAdmin.Name = "pnForAdmin";
-            this.pnForAdmin.Size = new System.Drawing.Size(617, 210);
-            this.pnForAdmin.TabIndex = 1;
-            this.pnForAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.pnForUser.Controls.Add(this.btnClear);
+            this.pnForUser.Controls.Add(this.btnSearch);
+            this.pnForUser.Controls.Add(this.groupBox1);
+            this.pnForUser.Controls.Add(this.cmbMonth);
+            this.pnForUser.Controls.Add(this.lblMonth);
+            this.pnForUser.Controls.Add(this.txtYear);
+            this.pnForUser.Controls.Add(this.lblYear);
+            this.pnForUser.Controls.Add(this.txtSalary);
+            this.pnForUser.Controls.Add(this.lblSalary);
+            this.pnForUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnForUser.Location = new System.Drawing.Point(317, 0);
+            this.pnForUser.Name = "pnForUser";
+            this.pnForUser.Size = new System.Drawing.Size(617, 210);
+            this.pnForUser.TabIndex = 1;
+            this.pnForUser.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btnClear
             // 
@@ -217,23 +217,23 @@
             this.lblSalary.TabIndex = 14;
             this.lblSalary.Text = "Salary";
             // 
-            // pnUser
+            // pnForAdmin
             // 
-            this.pnUser.Controls.Add(this.cmbPosition);
-            this.pnUser.Controls.Add(this.lblPosition);
-            this.pnUser.Controls.Add(this.cmbDepartment);
-            this.pnUser.Controls.Add(this.lblDepartment);
-            this.pnUser.Controls.Add(this.txtSurname);
-            this.pnUser.Controls.Add(this.lblSurname);
-            this.pnUser.Controls.Add(this.txtName);
-            this.pnUser.Controls.Add(this.lblName);
-            this.pnUser.Controls.Add(this.txtUserNo);
-            this.pnUser.Controls.Add(this.lblUserNo);
-            this.pnUser.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnUser.Location = new System.Drawing.Point(0, 0);
-            this.pnUser.Name = "pnUser";
-            this.pnUser.Size = new System.Drawing.Size(317, 210);
-            this.pnUser.TabIndex = 0;
+            this.pnForAdmin.Controls.Add(this.cmbPosition);
+            this.pnForAdmin.Controls.Add(this.lblPosition);
+            this.pnForAdmin.Controls.Add(this.cmbDepartment);
+            this.pnForAdmin.Controls.Add(this.lblDepartment);
+            this.pnForAdmin.Controls.Add(this.txtSurname);
+            this.pnForAdmin.Controls.Add(this.lblSurname);
+            this.pnForAdmin.Controls.Add(this.txtName);
+            this.pnForAdmin.Controls.Add(this.lblName);
+            this.pnForAdmin.Controls.Add(this.txtUserNo);
+            this.pnForAdmin.Controls.Add(this.lblUserNo);
+            this.pnForAdmin.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnForAdmin.Location = new System.Drawing.Point(0, 0);
+            this.pnForAdmin.Name = "pnForAdmin";
+            this.pnForAdmin.Size = new System.Drawing.Size(317, 210);
+            this.pnForAdmin.TabIndex = 0;
             // 
             // cmbPosition
             // 
@@ -409,12 +409,12 @@
             this.Text = "Salary List";
             this.Load += new System.EventHandler(this.FrmSalaryList_Load);
             this.panel1.ResumeLayout(false);
-            this.pnForAdmin.ResumeLayout(false);
-            this.pnForAdmin.PerformLayout();
+            this.pnForUser.ResumeLayout(false);
+            this.pnForUser.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.pnUser.ResumeLayout(false);
-            this.pnUser.PerformLayout();
+            this.pnForAdmin.ResumeLayout(false);
+            this.pnForAdmin.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -430,8 +430,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Panel pnForUser;
         private System.Windows.Forms.Panel pnForAdmin;
-        private System.Windows.Forms.Panel pnUser;
         private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.ComboBox cmbDepartment;

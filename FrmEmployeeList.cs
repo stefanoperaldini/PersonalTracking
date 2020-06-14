@@ -45,7 +45,7 @@ namespace PersonalTracking
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
-        {
+        { 
             if (detail.EmployeeID == 0)
                 MessageBox.Show("Please select a employee from table");
             else

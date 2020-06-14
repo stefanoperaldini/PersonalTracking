@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DAL.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,15 +34,34 @@ namespace PersonalTracking
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
+            if (!UserStatic.isAdmin)
+            {
+                btnDepartment.Visible = false;
+                btnPosition.Visible = false;
+            }
         }
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
-            FrmEmployeeList frm = new FrmEmployeeList();
-            this.Hide();
-            frm.ShowDialog();
-            this.Visible = true;
+            if(!UserStatic.isAdmin)
+            {
+                EmployeeDTO dto = EmployeeBLL.GetAll();
+                EmployeeDetailDTO detail = dto.Employees.First(x => x.EmployeeID == UserStatic.EmployeeID);
+                FrmEmployee frm = new FrmEmployee();
+                frm.detail = detail;
+                frm.isUpdate = true;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+            }
+            else
+            {
+                FrmEmployeeList frm = new FrmEmployeeList();
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+
+            }
         }
 
         private void btnTasks_Click(object sender, EventArgs e)

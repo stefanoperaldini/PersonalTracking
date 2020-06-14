@@ -47,6 +47,8 @@ namespace PersonalTracking
         private void fillAllData()
         {
             dto = SalaryBLL.GetAll();
+            if (!UserStatic.isAdmin)
+                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
             dataGridView1.DataSource = dto.Salaries;
             comboFull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -102,6 +104,12 @@ namespace PersonalTracking
             dataGridView1.Columns[12].HeaderText = "Salary";
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
+            if (!UserStatic.isAdmin)
+            {
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+                pnForAdmin.Hide();
+            }
         }
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
